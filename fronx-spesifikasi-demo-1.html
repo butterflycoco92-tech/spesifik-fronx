@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spesifikasi Suzuki Fronx</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 20px;
+            background: #f5f7fb;
+            color: #333;
+        }
+        .wrap {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.05);
+        }
+        h2 {
+            color: #003399;
+            margin-top: 0;
+            border-bottom: 2px solid #003399;
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: #444;
+            background: #f0f4ff;
+            padding: 8px 12px;
+            border-left: 4px solid #003399;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .btn-container {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 4px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            background: #fff;
+            color: #555;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: #f0f0f0;
+        }
+        button.active {
+            background: #003399;
+            color: #fff;
+            border-color: #003399;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+        td:first-child {
+            font-weight: bold;
+            width: 40%;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+    <h2>Spesifikasi Suzuki Fronx</h2>
+    
+    <div class="btn-container">
+        <button class="active" data-varian="glMT">GL MT</button>
+        <button data-varian="glAT">GL AT</button>
+        <button data-varian="gxMT">GX MT</button>
+        <button data-varian="gxAT">GX AT</button>
+        <button data-varian="sgxAT">SGX AT</button>
+    </div>
+
+    <div id="out"></div>
+</div>
+
+<script>
+const data = {
+    sgxAT: {
+        dimensi: [["Panjang Keseluruhan", "3.995 mm"], ["Lebar Keseluruhan", "1.765 mm"], ["Tinggi Keseluruhan", "1.550 mm"], ["Jarak Poros Roda", "2.520 mm"], ["Radius Putar Minimum", "4.800 mm"]],
+        mesin: [["Jenis", "K15C"], ["Isi Silinder", "1.462 cc"], ["Jumlah Katup", "16"], ["Jumlah Silinder", "4"], ["Diameter × Langkah", "74 x 85 mm"], ["Perbandingan Kompresi", "12"], ["Daya Maksimum", "74 kW / 6.000 rpm"], ["Momen Puntir Maksimum", "135 Nm / 4.400 rpm"], ["Sistem Bahan Bakar", "Multipoint Injection"]],
+        transmisi: [["Perbandingan Gigi Akhir", "3.683"], ["Gigi 1", "4.667"], ["Gigi 2", "2.533"], ["Gigi 3", "1.556"], ["Gigi 4", "1.135"], ["Gigi 5", "0.859"], ["Gigi 6", "0.686"], ["Mundur (R)", "3.394"]],
+        berat: [["Berat Kotor", "1.480 kg"]],
+        rangka: [["Sistem Kemudi", "Rack & Pinion"], ["Suspensi Depan", "MacPherson Strut"], ["Suspensi Belakang", "Torsion Beam"], ["Rem Depan", "Disc (Ventilated)"], ["Rem Belakang", "Drum (Leading Trailing)"], ["Ukuran Ban", "195/60 R16"]],
+        kapasitas: [["Tempat Duduk", "5 Persons"], ["Tangki Bahan Bakar", "37 Liter"]]
+    },
+    gxMT: {
+        dimensi: [["Panjang Keseluruhan", "3.995 mm"], ["Lebar Keseluruhan", "1.765 mm"], ["Tinggi Keseluruhan", "1.550 mm"], ["Jarak Poros Roda", "2.520 mm"], ["Radius Putar Minimum", "4.800 mm"]],
+        mesin: [["Jenis", "K15C"], ["Isi Silinder", "1.462 cc"], ["Jumlah Katup", "16"], ["Jumlah Silinder", "4"], ["Diameter × Langkah", "74 × 85 mm"], ["Perbandingan Kompresi", "12 : 1"], ["Daya Maksimum", "74 kW / 6.000 rpm"], ["Momen Puntir Maksimum", "135 Nm / 4.400 rpm"], ["Sistem Bahan Bakar", "Multipoint Injection"]],
+        transmisi: [["Jenis", "5-Speed Manual"], ["Perbandingan Gigi Akhir", "4.412"], ["Gigi 1", "3.545"], ["Gigi 2", "1.905"], ["Gigi 3", "1.233"], ["Gigi 4", "0.886"], ["Gigi 5", "0.690"], ["Mundur (R)", "3.250"]],
+        berat: [["Berat Kotor", "1.480 kg"]],
+        rangka: [["Sistem Kemudi", "Rack & Pinion"], ["Suspensi Depan", "MacPherson Strut"], ["Suspensi Belakang", "Torsion Beam"], ["Rem Depan", "Disc (Ventilated)"], ["Rem Belakang", "Drum (Leading Trailing)"], ["Ukuran Ban", "195/60 R16"]],
+        kapasitas: [["Tempat Duduk", "5 Orang"], ["Tangki Bahan Bakar", "37 Liter"]]
+    },
+    gxAT: {
+        dimensi: [["Panjang Keseluruhan", "3.995 mm"], ["Lebar Keseluruhan", "1.765 mm"], ["Tinggi Keseluruhan", "1.550 mm"], ["Jarak Poros Roda", "2.520 mm"], ["Radius Putar Minimum", "4.800 mm"]],
+        mesin: [["Jenis", "K15C"], ["Isi Silinder", "1.462 cc"], ["Jumlah Katup", "16"], ["Jumlah Silinder", "4"], ["Diameter × Langkah", "74 × 85 mm"], ["Perbandingan Kompresi", "12 : 1"], ["Daya Maksimum", "74 kW / 6.000 rpm"], ["Momen Puntir Maksimum", "135 Nm / 4.400 rpm"], ["Sistem Bahan Bakar", "Multipoint Injection"]],
+        transmisi: [["Jenis", "6-Speed Automatic"], ["Perbandingan Gigi Akhir", "3.683"], ["Gigi 1", "4.667"], ["Gigi 2", "2.533"], ["Gigi 3", "1.556"], ["Gigi 4", "1.135"], ["Gigi 5", "0.859"], ["Gigi 6", "0.686"], ["Mundur (R)", "3.394"]],
+        berat: [["Berat Kotor", "1.480 kg"]],
+        rangka: [["Sistem Kemudi", "Rack & Pinion"], ["Suspensi Depan", "MacPherson Strut"], ["Suspensi Belakang", "Torsion Beam"], ["Rem Depan", "Disc (Ventilated)"], ["Rem Belakang", "Drum (Leading Trailing)"], ["Ukuran Ban", "195/60 R16"]],
+        kapasitas: [["Tempat Duduk", "5 Orang"], ["Tangki Bahan Bakar", "37 Liter"]]
+    },
+    glMT: {
+        dimensi: [["Panjang Keseluruhan", "3.995 mm"], ["Lebar Keseluruhan", "1.765 mm"], ["Tinggi Keseluruhan", "1.550 mm"], ["Jarak Poros Roda", "2.520 mm"], ["Radius Putar Minimum", "4.800 mm"]],
+        mesin: [["Jenis", "K15B"], ["Isi Silinder", "1.462 cc"], ["Jumlah Katup", "16"], ["Jumlah Silinder", "4"], ["Diameter × Langkah", "74 × 85 mm"], ["Perbandingan Kompresi", "10,5 : 1"], ["Daya Maksimum", "77 kW / 6.000 rpm"], ["Momen Puntir Maksimum", "138 Nm / 4.400 rpm"], ["Sistem Bahan Bakar", "Multipoint Injection"]],
+        transmisi: [["Jenis", "5-Speed Manual"], ["Perbandingan Gigi Akhir", "4.412"], ["Gigi 1", "3.545"], ["Gigi 2", "1.905"], ["Gigi 3", "1.233"], ["Gigi 4", "0.886"], ["Gigi 5", "0.690"], ["Mundur (R)", "3.250"]],
+        berat: [["Berat Kotor", "1.480 kg"]],
+        rangka: [["Sistem Kemudi", "Rack & Pinion"], ["Suspensi Depan", "MacPherson Strut"], ["Suspensi Belakang", "Torsion Beam"], ["Rem Depan", "Disc (Ventilated)"], ["Rem Belakang", "Drum (Leading Trailing)"], ["Ukuran Ban", "195/60 R16"]],
+        kapasitas: [["Tempat Duduk", "5 Orang"], ["Tangki Bahan Bakar", "37 Liter"]]
+    },
+    glAT: {
+        dimensi: [["Panjang Keseluruhan", "3.995 mm"], ["Lebar Keseluruhan", "1.765 mm"], ["Tinggi Keseluruhan", "1.550 mm"], ["Jarak Poros Roda", "2.520 mm"], ["Radius Putar Minimum", "4.800 mm"]],
+        mesin: [["Jenis", "K15B"], ["Isi Silinder", "1.462 cc"], ["Jumlah Katup", "16"], ["Jumlah Silinder", "4"], ["Diameter × Langkah", "74 × 85 mm"], ["Perbandingan Kompresi", "10,5 : 1"], ["Daya Maksimum", "77 kW / 6.000 rpm"], ["Momen Puntir Maksimum", "138 Nm / 4.400 rpm"], ["Sistem Bahan Bakar", "Multipoint Injection"]],
+        transmisi: [["Jenis", "4-Speed Automatic"], ["Perbandingan Gigi Akhir", "4.145"], ["Gigi 1", "2.875"], ["Gigi 2", "1.568"], ["Gigi 3", "1.000"], ["Gigi 4", "0.697"], ["Mundur (R)", "2.300"]],
+        berat: [["Berat Kotor", "1.480 kg"]],
+        rangka: [["Sistem Kemudi", "Rack & Pinion"], ["Suspensi Depan", "MacPherson Strut"], ["Suspensi Belakang", "Torsion Beam"], ["Rem Depan", "Disc (Ventilated)"], ["Rem Belakang", "Drum (Leading Trailing)"], ["Ukuran Ban", "195/60 R16"]],
+        kapasitas: [["Tempat Duduk", "5 Orang"], ["Tangki Bahan Bakar", "37 Liter"]]
+    }
+};
+
+// Fungsi Render Data
+function render(k){
+    let html = "";
+    for(let kategori in data[k]){
+        html += `<h3>${kategori.toUpperCase()}</h3>`;
+        html += "<table>";
+        data[k][kategori].forEach(item => {
+            html += `<tr><td>${item[0]}</td><td>${item[1]}</td></tr>`;
+        });
+        html += "</table>";
+    }
+    document.getElementById("out").innerHTML = html;
+}
+
+// Mengatur Event Listener untuk Tombol-tombol Varian
+document.querySelectorAll("button").forEach(button => {
+    button.addEventListener("click", function() {
+        document.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+        this.classList.add("active");
+        
+        const varian = this.getAttribute("data-varian");
+        render(varian);
+    });
+});
+
+// Jalankan varian default saat web pertama kali dibuka
+render('glMT');
+</script>
+
+</body>
+</html>
